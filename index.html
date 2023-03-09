@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SHOPPING</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="stylesheet" href="./assets/css/toast.css">
+    <link rel="stylesheet" href="./assets/css/base.css">
+    <link rel="stylesheet" href="./assets/css/main.css">
+    <link rel="stylesheet" href="./assets/fonts/fontawesome-free-6.3.0-web/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap&subset=vietnamese"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="app">
+        <div class="header">
+            <div class="grid-header">
+                <div>
+                    <a href="/" class="logo">
+                        <img src="assets/img/logo.png" class="logo-shop" alt="loi">
+                        <span class="logo-name">Nike</span>
+                    </a>
+                </div>
+                <div>
+                    <ul class="navbar">
+                        <li class="tab-item active tab-home">
+                            <span onclick="handleBackHome()">HOME</span>
+                        </li>
+                        <li class="tab-item">
+                            <span>ABOUT</span>
+                        </li>
+                        <li class="tab-item">
+                            <span onclick="handleOpenBills()">BILLS</span>
+                        </li>
+                        <li class="tab-item">
+                            <div class="header__cart">
+                                <div class="header__cart-wrap" onmouseover="handleHoverWrap()"
+                                    onmouseout="handleOutHoverWrap()">
+                                    <div class="header__cart-icon" onclick="openCart()">
+                                        <i class="fas fa-shopping-cart icon-cart">
+
+                                            <span class="header__cart-notice"></span>
+                                        </i>
+                                    </div>
+
+                                    <div class="header__cart-list">
+                                        <div class="serieel" onclick="openCart()"></div>
+                                        <div class="no-cart">
+                                            <img src="./assets/img/no_cart.png" alt="" class="header__cart-no-cart-img">
+                                            <p class="header__cart-list-no-cart-msg">
+                                                Chưa có sản phẩm
+                                            </p>
+                                        </div>
+
+                                        <div class="list-cart-item">
+                                            <h4 class="header__cart-heading">Sản phẩm đã thêm</h4>
+                                            <ul class="header__cart-list-item">
+                                            </ul>
+                                            <button class="list-cart-item-button" onclick="openCart()">Xem giỏ
+                                                hàng</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="home-product">
+                <div class="grid">
+                </div>
+            </div>
+            <div class="cart-info">
+                <div class="nocart">
+                    <div class="img-nocart">
+                        <img src="./assets/img/noCart.png">
+                    </div>
+                </div>
+                <div class="list-cart">
+                    <div class="list-title">
+                        <span class="list-title-name">Product Name</span>
+                        <div class="list-title-properti">
+                            <span class="list-title-quantity">Quantity</span>
+                            <span class="list-title-subtotal">Subtotal</span>
+                            <span class="list-title-total">Total</span>
+                            <span class="list-title-clear-cart">Clear Cart</span>
+                        </div>
+                    </div>
+                    <div class="list-cart-body">
+                    </div>
+                    <div class="total-money"></div>
+                </div>
+                <div class="btn-action">
+                    <button class="btn-back" onclick="handleBackHome()">
+                        <i class="fa-solid fa-arrow-left"></i>
+                        Back to Shopping
+                    </button>
+                    <button class="btn-buy" onclick="handleOpenModal()">Buy</button>
+                </div>
+
+
+            </div>
+            <div class="list-bill">
+                <!-- <div class="no-bill">NO BILL</div> -->
+                <div class="list-bill-list">
+                    <div class="list-bill-title">
+                        <span class="bill-title-code">Code</span>
+                        <span class="bill-title">Customer Name</span>
+                        <span class="bill-title">Date</span>
+                        <span class="bill-title">Item Numbers</span>
+                        <span class="bill-title">Total Quantity</span>
+                        <span class="bill-title">Total Price</span>
+                        <span class="bill-title-return">Return</span>
+                    </div>
+                    <div class="list-bill-info">
+                    </div>
+                </div>
+
+                <div class="btn-action">
+                    <button class="btn-back-bill" onclick="handleBackHome()">
+                        <i class="fa-solid fa-arrow-left"></i>
+                        Back to Shopping
+                    </button>
+                </div>
+            </div> 
+            <div class="modal">
+                <div class="modal-container">
+                    <div class="modal-header">
+                        <p class="modal-header-text">Thông tin người mua</p>
+                        <div class="modal-header-icon" onclick="handleCloseModal()">
+                            <i class="fa-solid fa-xmark"></i>
+
+                        </div>
+                    </div>
+                    <div class="modal-body">
+                        <label for="" class="modal-lable">Họ và tên
+                            <span class="modal-lable-require">*</span>
+                        </label>
+                        <input type="text" class="value-form modal-input input-surname" placeholder="Họ"
+                            oninput="validateSurname()">
+                        <input type="text" class="value-form modal-input input-name" placeholder="Tên"
+                            oninput="validateName()">
+                        <p class="surname-name">
+                            <span class="form-message message-surname"></span>
+                            <span class="form-message message-name"></span>
+                        </p>
+
+                        <label for="" class="modal-lable">Email
+                            <span class="modal-lable-require">*</span>
+                        </label>
+                        <input type="text" class="value-form modal-input input-email" placeholder="Email"
+                            oninput="validateEmail()">
+                        <span class="form-message message-email"></span>
+
+                        <label for="" class="modal-lable">Số điện thoại
+                            <span class="modal-lable-require">*</span>
+                        </label>
+                        <input type="text" class="value-form modal-input input-phone" placeholder="Số điện thoại"
+                            oninput="validatePhone()">
+                        <span class="form-message message-phone"></span>
+
+                        <label for="" class="modal-lable">Địa chỉ
+                            <span class="modal-lable-require">*</span>
+                        </label>
+                        <select class="value-form select-input" name="province" id="province"
+                            oninput="handleDistrictByID()" onchange="handleCloseTitle()">
+                            <option value='[0]' class="option-province-default">-- Chọn Tỉnh/Thành phố --</option>
+                        </select>
+                        <select class="value-form select-input" name="district" id="district" oninput="handleWardByID()"
+                            onfocus="handleNoProvince()">
+                            <option value='[0]' class="option-district-default">-- Chọn Huyện/Quận --</option>
+                        </select>
+                        <select class="value-form select-input" name="ward" id="ward" onfocus="handleNoDistrict()">
+                            <option value='[0]' class="option-ward-default">-- Chọn Phường/Xã --</option>
+                        </select>
+                        <input type="text" class="value-form modal-input input-address" placeholder="Số nhà"
+                            oninput="validateAddress()">
+                        <span class="form-message message-address"></span>
+
+                        <label for="" class="modal-lable">Lời nhắn</label>
+                        <textarea name="note" id="modal-note" class="textarea-note" cols="30" rows="10"></textarea>
+                    </div>
+                    <div class="modal-btn">
+                        <button class="btn-cancel" onclick="handleCloseModal()">Hủy</button>
+                        <button class="btn-confirm" onclick="handleSave()">Xác nhận</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="toast"></div>
+    <script src="script.js"></script>
+</body>
+
+</html>
